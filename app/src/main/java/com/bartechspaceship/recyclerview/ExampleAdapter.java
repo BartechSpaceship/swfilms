@@ -21,8 +21,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     private ArrayList<ExampleItem> mExampleList;
 
     private Context mContext;
-    private ArrayList<ExampleItem> mExampleItems;
-    public ViewPager
+    //private ArrayList<ExampleItem> mExampleItems;
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView1;
@@ -54,8 +53,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
-        ExampleItem exampleItem = mExampleItems.get(position);
+        ExampleItem exampleItem = mExampleList.get(position);
         //Was previously ExampleItem currentItem = mExampleList.get(position);
+
+        holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
+        holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +70,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
 
 
-        holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
-        holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
+
 
 
     }
