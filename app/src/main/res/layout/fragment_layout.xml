@@ -1,10 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="1dp">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Title here"
+        android:textSize="40sp"
+        android:textStyle="normal"
+
+        android:textColor="#000"
+        android:background="@drawable/border" />
+
+
+    <TextView
+        android:id="@+id/opening_crawl_title"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="Opening Crawl"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="40sp"
+        android:layout_below="@+id/title"/>
+    <TextView
+        android:id="@+id/opening_crawl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_below="@+id/opening_crawl_title"
+        android:textSize="25dp"
+        android:textColor="#000"
+        android:text="JsonInssssssssssssssssssssssssssssssssssssssssssssssssssssfoHerejustofdfjgnkjgsndflsdfjksdfnwerfewjkfsdbfksdhbfjksdfbskdjfnsdfjk"
+        android:textStyle="italic"
+        />
+    <TextView
+        android:id="@+id/director_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opening_crawl"
+        android:text="Director"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:id="@+id/director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/director_title"
+        android:text="John Doe"
+        android:textStyle="italic"
+        android:textColor="#000"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:id="@+id/producer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/director"
+        android:layout_marginTop="10dp"
+        android:text="Producer"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/producer_title"
+        android:id="@+id/producer"
+        android:textSize="25dp"
+        android:text="Mary Kay"
+        android:textColor="#000"
+        android:textStyle="italic"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/producer"
+        android:id="@+id/release_date_title"
+        android:text="Release Date"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PEE PEE POO POO"
+        android:layout_below="@+id/release_date_title"
+        android:id="@+id/release_date"
+        android:textSize="25dp"
+        android:textColor="#000"
+        android:textStyle="italic"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="8dp"
+        app:cardMaxElevation="2dp"
+        app:cardElevation="1dp"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--HERE is where the names or images of characters will be stored-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/image"
+                android:src="@drawable/ic_launcher_background"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Vader"
+                android:layout_below="@+id/image"
+                android:id="@+id/nameJSON"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="#000"
+                android:layout_marginBottom="5dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="20sp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
+
+
+
+
+
+
+
+
+
+

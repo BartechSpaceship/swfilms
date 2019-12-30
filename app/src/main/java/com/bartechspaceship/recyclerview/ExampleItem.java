@@ -1,5 +1,7 @@
 package com.bartechspaceship.recyclerview;
 
+
+//items for initial card view
 public class ExampleItem {
 
     private String mText1;
