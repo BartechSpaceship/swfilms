@@ -1,5 +1,6 @@
 package com.bartechspaceship.recyclerview;
 
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +34,13 @@ public class FragmentFilmSelection extends Fragment {
         final FragmentActivity c = getActivity();
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
-        exampleList.add(new ExampleItem("Title Of Film 1", "Release Date"));
-        exampleList.add(new ExampleItem("Title Of Film 2", "Release Date2"));
-        exampleList.add(new ExampleItem("Title Of Film 3", "Release Date3"));
-        exampleList.add(new ExampleItem("Title Of Film 4", "Release Date4"));
-        exampleList.add(new ExampleItem("Title Of Film 5", "Release Date5"));
-        exampleList.add(new ExampleItem("Title Of Film 6", "Release Date6"));
+        //First fragment is just main page
+        exampleList.add(new ExampleItem("Title Of Film 1", "Release Date"));//Movie4
+        exampleList.add(new ExampleItem("Title Of Film 2", "Release Date2"));//Movie5
+        exampleList.add(new ExampleItem("Title Of Film 3", "Release Date3"));//Movie6
+        exampleList.add(new ExampleItem("Title Of Film 4", "Release Date4"));//Movie1
+        exampleList.add(new ExampleItem("Title Of Film 5", "Release Date5"));//Movie2
+        exampleList.add(new ExampleItem("Title Of Film 6", "Release Date6"));//Movie3
 
 
 
@@ -46,8 +48,10 @@ public class FragmentFilmSelection extends Fragment {
         //Set it to true if the recycle view doesnt change in size
         recyclerView.setHasFixedSize(true);
 
-        mAdapter = new ExampleAdapter(exampleList);
+        mAdapter = new ExampleAdapter(getActivity(), exampleList);
         mLayoutManager = new LinearLayoutManager(c);
+
+
 
 
 
@@ -56,6 +60,8 @@ public class FragmentFilmSelection extends Fragment {
         //recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         //mRecyclerView = (RecyclerView) view.getRootView().findViewById(R.id.recyclerView);
+
+
 
 
 

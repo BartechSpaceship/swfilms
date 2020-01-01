@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
+    public static TextView data;
     //private ArrayList<String> mNamesJSON = new ArrayList<>();
     //private ArrayList<String> mImageUrls = new ArrayList<>();
 
@@ -23,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //This is from Json FETCH DATA
+        //data = (TextView) findViewById(R.id.title);
+
+
+
+
         mSectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.containter);
@@ -31,15 +39,20 @@ public class MainActivity extends AppCompatActivity {
 
         //setContentView(R.layout.activity_main);
         //initImageBitmaps();
+        //How do we specify the Cardviews.
 
     }
 
 
     private void setupViewPager(ViewPager viewPager){
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentFilmSelection(), "Fragment 1");
-        adapter.addFragment(new FragmentEpisode4(), "Fragment2");
-        adapter.addFragment(new FragmentEpisode5(), "Fragment3");
+        adapter.addFragment(new FragmentFilmSelection(), "Fragment 1");//0
+        adapter.addFragment(new FragmentEpisode4(), "Fragment2");//1
+        adapter.addFragment(new FragmentEpisode5(), "Fragment3");//2
+        adapter.addFragment(new FragmentEpisode6(), "Fragment4");
+        adapter.addFragment(new FragmentEpisode1(), "Fragment5");
+        adapter.addFragment(new FragmentEpisode2(), "Fragment6");
+        adapter.addFragment(new FragmentEpisode3(), "Fragment7");
         viewPager.setAdapter(adapter);
     }
 

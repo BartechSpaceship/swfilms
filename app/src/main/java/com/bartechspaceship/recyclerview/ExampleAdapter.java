@@ -1,6 +1,7 @@
 package com.bartechspaceship.recyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,25 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
 
+    String FILM_URL = "https://swapi.co/api/films/";
     private ArrayList<ExampleItem> mExampleList;
+    //private String mTitle;
+
 
     private Context mContext;
     //private ArrayList<ExampleItem> mExampleItems;
@@ -38,8 +53,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     }
 
-    public ExampleAdapter(ArrayList<ExampleItem> exampleList){
-        mExampleList = exampleList;
+
+
+    public ExampleAdapter(Context mContext, ArrayList<ExampleItem> exampleList){
+        this.mExampleList = exampleList;
+        this.mContext = mContext;
 
     }
 
@@ -52,31 +70,69 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
-        ExampleItem exampleItem = mExampleList.get(position);
+    public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
+        final ExampleItem exampleItem = mExampleList.get(position);
         //Was previously ExampleItem currentItem = mExampleList.get(position);
+
+        /*//Just added from tutorial
+        fetchData process = new fetchData();
+        process.execute();*/
 
         holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
         holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
 
+        //RequestParams params = new RequestParams();
+        //params.put(test);
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                switch(holder.getAdapterPosition()){
+                    case 0:
+                        ((MainActivity)mContext).setViewPager(1);
+                        //FragmentEpisode4 fragmentEpisode4 = new FragmentEpisode4();
+                        //fragmentEpisode4.mQueue= Volley.newRequestQueue(mContext.getApplicationContext());
+                        //fragmentEpisode4.jsonParse();
+
+                        //fragmentEpisode4.mTitle.append();
+
+
+                        break;
+                    case 1:
+                        ((MainActivity)mContext).setViewPager(2);
+                        break;
+                    case 2:
+                        ((MainActivity)mContext).setViewPager(3);
+                        break;
+                    case 3:
+                        ((MainActivity)mContext).setViewPager(4);
+                        break;
+                    case 4:
+                        ((MainActivity)mContext).setViewPager(5);
+                        break;
+                    case 5:
+                        ((MainActivity)mContext).setViewPager(6);
+                        break;
+                    case 6:
+                        ((MainActivity)mContext).setViewPager(7);
+                        break;
+                    default:
+                        ((MainActivity)mContext).setViewPager(0);
+                        break;
+                }
 
 
             }
         });
 
-
-
-
-
-
-
     }
-     //Have to define howmany items are going to be in the list
+     //Havle to define howmany items are going to be in the ist
     @Override
     public int getItemCount() {
         return mExampleList.size();
     }
+
+
+
+
+
 }
