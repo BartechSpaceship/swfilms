@@ -12,16 +12,45 @@ public class StarWarsDataModel {
     private String mDirector;
     private String mProducer;
     private String mRelease_date;
+    private int mEpisode_id;
 
-    public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date) {
+    public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date, int episode_id) {
         mTitle = title;
         mOpening_crawl = opening_crawl;
         mDirector = director;
         mProducer = producer;
         mRelease_date = release_date;
+        mEpisode_id = episode_id;
     }
 
-    /* //create a StarWarsDataModel from a JSON
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public String getOpening_crawl() {
+        return mOpening_crawl;
+    }
+
+    public String getDirector() {
+        return mDirector;
+    }
+
+    public String getProducer() {
+        return mProducer;
+    }
+
+    public String getRelease_date() {
+        return mRelease_date;
+    }
+
+    public int getEpisode_id() {
+        return mEpisode_id;
+    }
+
+}
+
+/* //create a StarWarsDataModel from a JSON
     public static StarWarsDataModel fromJson(JSONObject jsonObject){
 
         StarWarsDataModel starWarsData = new StarWarsDataModel();
@@ -54,30 +83,3 @@ public class StarWarsDataModel {
             return null;
         }
     }*/
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public String getOpening_crawl() {
-        return mOpening_crawl;
-    }
-
-    public String getDirector() {
-        return mDirector;
-    }
-
-    public String getProducer() {
-        return mProducer;
-    }
-
-    public String getRelease_date() {
-        return mRelease_date;
-    }
-
-    public ArrayList getCharacters() {
-        return mCharacters;
-    }
-}
-
-

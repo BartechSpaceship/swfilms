@@ -27,8 +27,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class FragmentEpisode4 extends Fragment {
-    public TextView mTitle;
+    private TextView mTitle;
+    private TextView mOpeningCrawl;
+    private TextView mDirectorTitle;
+    private TextView mProducer;
+    private TextView mReleaseDate;
     public RequestQueue mQueue;
+    private ArrayList<StarWarsDataModel> mStarWarsDataModels;
+    private int episodeNum;
+
     //public Context mContext;
 
     //private ArrayList mCharacters; Comment out for now
@@ -40,42 +47,29 @@ public class FragmentEpisode4 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_episode4, container, false);
 
+        //mTitle = view.findViewById(R.id.title);
+
+
         mTitle = view.findViewById(R.id.title);
+        mOpeningCrawl = view.findViewById(R.id.opening_crawl);
+        mDirectorTitle = view.findViewById(R.id.director);
+        mProducer = view.findViewById(R.id.producer);
+        mReleaseDate = view.findViewById(R.id.release_date);
+
         mQueue = Volley.newRequestQueue(getActivity());
+        mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
+        episodeNum = 4;
+
 
         jsonParse();
+
+        //Might have to make a seperate thread
+
         return view;
+
     }
 
 
-    /*private void jsonRequest(View v) {
-        final TextView mTitle;
-        mTitle = (TextView) v.findViewById(R.id.title);
-        String url = "https://swapi.co/api/films";
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            //JSONArray jsonArray = response.getJSONArray(0);
-                            mTitle.setText("Response: " + response.getJSONObject(0).toString()
-                                    .substring(0, 50));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-        VolleyHelper.getInstance(v.getContext()).addToRequestQueue(jsonArrayRequest);
-    }*/
 
     public void jsonParse() {
 
@@ -98,13 +92,17 @@ public class FragmentEpisode4 extends Fragment {
                                 String director = result.getString("director");
                                 String producer = result.getString("producer");
                                 String release_date = result.getString("release_date");
+                                int episode_id = result.getInt("episode_id");
 
+                                StarWarsDataModel starWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id);
+                                mStarWarsDataModels.add(starWarsDataModel);
 
 
                                 //int age = result.getInt("age");
                                 //String mail = result.getString("mail");
 
                                 //mTitle.setText(title);//Was previously append
+                                setTextViews(mStarWarsDataModels);
 
                             }
                         } catch (JSONException e) {
@@ -122,5 +120,35 @@ public class FragmentEpisode4 extends Fragment {
         });
 
         mQueue.add(request);
+
+
     }
+
+
+    public void setTextViews(ArrayList<StarWarsDataModel> starWarsDataModels){
+        for (StarWarsDataModel starWarsDataModel : starWarsDataModels){
+            if(starWarsDataModel.getEpisode_id() == episodeNum){
+                mTitle.setText(starWarsDataModel.getTitle());
+                mOpeningCrawl.setText(starWarsDataModel.getOpening_crawl());
+                mDirectorTitle.setText(starWarsDataModel.getDirector());
+                mProducer.setText(starWarsDataModel.getProducer());
+                mReleaseDate.setText(starWarsDataModel.getRelease_date());
+            }
+
+        }
+    }
+
+
+    /*public void setTextViews(){
+        mTitle.setText();
+        mOpeningCrawl = getActivity().findViewById(R.id.opening_crawl);
+        mDirectorTitle = getActivity().findViewById(R.id.director);
+        mProducer = getActivity().findViewById(R.id.producer);
+        mReleaseDate = getActivity().findViewById(R.id.release_date);
+    }
+    */
+
+
+
+
 }
