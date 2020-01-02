@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="fill_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/relativity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="1dp">
+    android:layout_margin="1dp"
+    android:background="#000000">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
         android:text=""
-        android:textSize="40sp"
-        android:textStyle="normal"
+        android:textSize="50sp"
 
-        android:textColor="#000"
-        android:background="@drawable/border" />
+        android:textColor="#FFE81F"
+
+
+        android:layout_centerHorizontal="true"
+
+        android:fontFamily="@font/starjhol"
+        />
+
     <TextView
         android:id="@+id/opening_crawl_title"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:text="Opening Crawl"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:textSize="40sp"
-        android:layout_below="@+id/title"/>
+        android:layout_below="@+id/title"
+        android:layout_marginTop="20dp"
+        android:text="OPENING CRAWL"
+
+
+        android:fontFamily="@font/sf_distant_galaxy"
+        android:textColor="#FFE81F"
+        android:textSize="30sp"
+         />
+
     <TextView
         android:id="@+id/opening_crawl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/opening_crawl_title"
         android:textSize="25dp"
-        android:textColor="#000"
+        android:textColor="#FFE81F"
         android:text=""
         android:textStyle="italic"
         />
@@ -43,11 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/opening_crawl"
-        android:text="Director"
-        android:textStyle="bold"
-        android:textSize="35sp"
-        android:textColor="#000"
-        android:layout_marginTop="10dp"
+        android:text="DIRECTOR"
+        android:fontFamily="@font/sf_distant_galaxy"
+
+        android:textSize="30sp"
+        android:textColor="#FFE81F"
+        android:layout_marginTop="20dp"
         />
     <TextView
         android:id="@+id/director"
@@ -55,8 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/director_title"
         android:text=""
+
         android:textStyle="italic"
-        android:textColor="#000"
+        android:textColor="#FFE81F"
         android:textSize="25dp"
         />
     <TextView
@@ -64,11 +77,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/director"
-        android:layout_marginTop="10dp"
-        android:text="Producer"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_distant_galaxy"
+        android:text="PRODUCER"
+        android:textSize="30sp"
+
+        android:textColor="#FFE81F"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -77,19 +91,20 @@
         android:id="@+id/producer"
         android:textSize="25dp"
         android:text=""
-        android:textColor="#000"
+        android:textColor="#FFE81F"
         android:textStyle="italic"
         />
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/producer"
         android:id="@+id/release_date_title"
-        android:text="Release Date"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="#000"
+        android:text="RELEASE DATE"
+        android:fontFamily="@font/sf_distant_galaxy"
+        android:textSize="30sp"
+
+        android:textColor="#FFE81F"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -98,8 +113,22 @@
         android:layout_below="@+id/release_date_title"
         android:id="@+id/release_date"
         android:textSize="25dp"
-        android:textColor="#000"
-        android:textStyle="italic">
+        android:textColor="#FFE81F"
+        android:textStyle="italic"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/release_date"
+        android:id="@+id/characters"
+        android:text="CHARACTERS"
+        android:fontFamily="@font/sf_distant_galaxy"
+        android:textSize="30sp"
+
+        android:textColor="#FFE81F"
+        >
+
+
 
     </TextView>
 
@@ -109,13 +138,14 @@
         android:layout_height="120dp"
         app:cardCornerRadius="8dp"
         app:cardMaxElevation="2dp"
-        android:layout_below="@+id/release_date"
+        android:layout_below="@+id/characters"
         app:cardElevation="1dp"
         android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#000">
 
             <!--HERE is where the names or images of characters will be stored-->
             <de.hdodenhof.circleimageview.CircleImageView
@@ -136,7 +166,8 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_marginTop="5dp"
-                android:textColor="#000"
+                android:textColor="#FFE81F"
+                android:fontFamily="@font/sf_distant_galaxy"
                 android:layout_marginBottom="5dp"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="8sp"

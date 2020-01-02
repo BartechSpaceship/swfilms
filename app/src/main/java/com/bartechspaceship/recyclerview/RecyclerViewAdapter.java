@@ -24,14 +24,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "Recycle View Adapter Testing In progress";
     //Vars
-    private ArrayList<String> mNamesJSON = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
+    private ArrayList<String> mNamesJSON;
+    //private ArrayList<String> mImageUrls = new ArrayList<>();
     private Context mContext;//Create new constructor for all 3 of these
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> namesJSON, ArrayList<String> imageUrls) {
-        mNamesJSON = namesJSON;
-        mImageUrls = imageUrls;
-        mContext = context;
+    public RecyclerViewAdapter(Context context, ArrayList<String> namesJSON) {
+        this.mNamesJSON = namesJSON;
+        this.mContext = context;
     }
 
     //All methods required to use recycle view
@@ -46,22 +45,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override// Here is where all the widgets get attached to each individual list item
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(mContext)
+        /*Glide.with(mContext)
                 .asBitmap()
-                .load(mImageUrls.get(position))
+                .load(sitmImageUrls.get(poion))//Changed from images to text
                 .into(holder.image);//THIS WILL ATTACH IMGAGES -- MIGHT BE REMOVED
+
+         */
 
         holder.nameJSON.setText(mNamesJSON.get(position));// Here the JSON name will be placed the code might be removed
 
-        holder.image.setOnClickListener(new View.OnClickListener() {
+        /*holder.image.setOnClickListener(new View.OnClickListener() {//Keep if we want to show description of character
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on an image: " + mNamesJSON.get(position));
+                //Log.d(TAG, "onClick: clicked on an image: " + mNamesJSON.get(position));
                 // I dont need an onclick listener but it looks cool
                 Toast.makeText(mContext,mNamesJSON.get(position), Toast.LENGTH_SHORT).show();//This will be cool though
 
             }
-        });
+        });*/
     }
 
     @Override//Returns the number of items that will be in the list
@@ -70,13 +71,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        CircleImageView image;
+        //CircleImageView image;
         TextView nameJSON;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //now it refers to xml image from fragment_layout
-            image = itemView.findViewById(R.id.image);
+            //image = itemView.findViewById(R.id.image);
             nameJSON = itemView.findViewById(R.id.nameJSON);
         }
     }

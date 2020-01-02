@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,10 +39,22 @@ public class FragmentEpisode4 extends Fragment {
     public RequestQueue mQueue;
     private ArrayList<StarWarsDataModel> mStarWarsDataModels;
     private int episodeNum;
+    private RecyclerView recyclerView;
+
+
+    //Character Names
+    private Character mCharacter;
+    private ArrayList<Character> mCharacters;
 
     //public Context mContext;
 
     //private ArrayList mCharacters; Comment out for now
+
+    //Names for testing
+    public ArrayList<String> mNames;
+
+
+
 
 
 
@@ -47,23 +63,56 @@ public class FragmentEpisode4 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_episode4, container, false);
 
+
         //mTitle = view.findViewById(R.id.title);
 
 
+        View rootView = inflater.inflate(R.layout.resource_test, container, false);
+        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView2);
+        final FragmentActivity c = getActivity();
+
+
+
+
+        //recyclerView = view.findViewById(R.id.recyclerView2);
         mTitle = view.findViewById(R.id.title);
         mOpeningCrawl = view.findViewById(R.id.opening_crawl);
         mDirectorTitle = view.findViewById(R.id.director);
         mProducer = view.findViewById(R.id.producer);
         mReleaseDate = view.findViewById(R.id.release_date);
 
+        //Holds characters in each movie.
+        mCharacters = new ArrayList<>();
+
+
         mQueue = Volley.newRequestQueue(getActivity());
         mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
         episodeNum = 4;
+
+        //mCharacters.get()
 
 
         jsonParse();
 
         //Might have to make a seperate thread
+
+        //NAMES FOR TESTING
+        mNames = new ArrayList<>();
+
+        mNames.add("Darth");
+
+        mNames.add("Luke");
+
+        mNames.add("bob");
+
+
+        //hardcoded initRecyclerView
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        //RecyclerView recyclerView = getActivity().findViewById(R.id.recyclerView2);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(c, mNames);
+        recyclerView.setAdapter(adapter);
 
         return view;
 
@@ -93,8 +142,13 @@ public class FragmentEpisode4 extends Fragment {
                                 String producer = result.getString("producer");
                                 String release_date = result.getString("release_date");
                                 int episode_id = result.getInt("episode_id");
+                                //Characters
+                                JSONArray characters = result.getJSONArray("characters");
+                                mCharacter = new Character(characters.getString(0));
+                                mCharacters.add(mCharacter);
 
-                                StarWarsDataModel starWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id);
+
+                                StarWarsDataModel starWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id, mCharacters);
                                 mStarWarsDataModels.add(starWarsDataModel);
 
 
@@ -148,6 +202,27 @@ public class FragmentEpisode4 extends Fragment {
     }
     */
 
+    /*private void getNames(){
+        mNames.add("Darth");
+
+        mNames.add("Luke");
+
+        mNames.add("bob");
+
+        initRecyclerView();
+    }
+
+
+     */
+/*
+    private void initRecyclerView(){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        //RecyclerView recyclerView = getActivity().findViewById(R.id.recyclerView2);
+        recyclerView.setLayoutManager(layoutManager);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), mNames);
+        recyclerView.setAdapter(adapter);
+    }
+    */
 
 
 

@@ -35,8 +35,8 @@ public class FragmentFilmSelection extends Fragment {
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
         //First fragment is just main page
-        exampleList.add(new ExampleItem("Title Of Film 1", "Release Date"));//Movie4
-        exampleList.add(new ExampleItem("Title Of Film 2", "Release Date2"));//Movie5
+        exampleList.add(new ExampleItem("A New Hope", "1977-05-25"));//Movie4
+        exampleList.add(new ExampleItem("The Empire Strkies Back", "1980-05-17"));//Movie5
         exampleList.add(new ExampleItem("Title Of Film 3", "Release Date3"));//Movie6
         exampleList.add(new ExampleItem("Title Of Film 4", "Release Date4"));//Movie1
         exampleList.add(new ExampleItem("Title Of Film 5", "Release Date5"));//Movie2

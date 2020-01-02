@@ -13,16 +13,17 @@ public class StarWarsDataModel {
     private String mProducer;
     private String mRelease_date;
     private int mEpisode_id;
+    private ArrayList<Character> mCharacters;
 
-    public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date, int episode_id) {
+    public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date, int episode_id, ArrayList<Character> characters) {
         mTitle = title;
         mOpening_crawl = opening_crawl;
         mDirector = director;
         mProducer = producer;
         mRelease_date = release_date;
         mEpisode_id = episode_id;
+        mCharacters = characters;
     }
-
 
     public String getTitle() {
         return mTitle;
@@ -48,6 +49,13 @@ public class StarWarsDataModel {
         return mEpisode_id;
     }
 
+    public ArrayList<Character> getCharacters() {
+        return mCharacters;
+    }
+
+    public void setCharacters(ArrayList<Character> characters) {
+        mCharacters = characters;
+    }
 }
 
 /* //create a StarWarsDataModel from a JSON
