@@ -130,53 +130,22 @@
 
 
 
+
     </TextView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/characters">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:cardCornerRadius="8dp"
-        app:cardMaxElevation="2dp"
-        android:layout_below="@+id/characters"
-        app:cardElevation="1dp"
-        android:layout_alignParentBottom="true">
-
-        <RelativeLayout
+        <include
+            layout="@layout/character_item_example"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#000">
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
-            <!--HERE is where the names or images of characters will be stored-->
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:scaleType="centerCrop"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/image"
-                android:src="@drawable/ic_launcher_background"
-                />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Vader"
-                android:layout_below="@+id/image"
-                android:id="@+id/nameJSON"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:textColor="#FFE81F"
-                android:fontFamily="@font/sf_distant_galaxy"
-                android:layout_marginBottom="5dp"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
-                android:autoSizeMaxTextSize="20sp"
-                />
 
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
 

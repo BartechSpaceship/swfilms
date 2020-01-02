@@ -68,7 +68,7 @@ public class FragmentEpisode4 extends Fragment {
 
 
         View rootView = inflater.inflate(R.layout.resource_test, container, false);
-        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView2);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView2);
         final FragmentActivity c = getActivity();
 
 
@@ -109,9 +109,9 @@ public class FragmentEpisode4 extends Fragment {
         //hardcoded initRecyclerView
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        //RecyclerView recyclerView = getActivity().findViewById(R.id.recyclerView2);
+        recyclerView = view.findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(c, mNames);
+        HorizontalAdapter adapter = new HorizontalAdapter(c, mNames);
         recyclerView.setAdapter(adapter);
 
         return view;

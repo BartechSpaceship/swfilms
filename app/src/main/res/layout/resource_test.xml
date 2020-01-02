@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-   > <!--used to see space between items  -->
-    <!--tools:context=".MainActivity" to connect main with the rest or something-->
+<androidx.cardview.widget.CardView android:layout_width="120dp"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    app:cardMaxElevation="2dp"
+    android:layout_below="@+id/characters"
+    app:cardElevation="1dp"
+    android:layout_alignParentBottom="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000">
+
+            <!--HERE is where the names or images of characters will be stored-->
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Vader"
+                android:id="@+id/characterName"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textColor="#FFE81F"
+                android:fontFamily="@font/sf_distant_galaxy"
+                android:layout_marginBottom="5dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeMaxTextSize="20sp"
+                />
 
+        </RelativeLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" /> <!--this is example item -->
+</androidx.cardview.widget.CardView>
 
     <!--Originally USED IN MAIN XML will need edits, works with view pager
       will we need a new one? IDK LOL -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>

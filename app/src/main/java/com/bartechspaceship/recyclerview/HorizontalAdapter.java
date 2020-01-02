@@ -12,35 +12,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
+public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.ExampleViewHolder> {
 
     String FILM_URL = "https://swapi.co/api/films/";
-    private ArrayList<ExampleItem> mExampleList;
+    private ArrayList<String> mCharacterList;
     //private String mTitle;
-
+    //ToDo Change <String> to <Character>
 
     private Context mContext;
     //private ArrayList<ExampleItem> mExampleItems;
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView1;
-        public TextView mTextView2;
-        CardView mCardView;
+        //public TextView mTextView2;
+        //CardView mCardView;
 
         public ExampleViewHolder(View itemView){
             super(itemView);
             //if i want image ill add it here find view by id
-            mTextView1 = itemView.findViewById(R.id.textView);
-            mTextView2 = itemView.findViewById(R.id.textView2);
-            mCardView = itemView.findViewById(R.id.cardViewItem);
+            mTextView1 = itemView.findViewById(R.id.characterName);
+            //mTextView2 = itemView.findViewById(R.id.textView2);
+            //mCardView = itemView.findViewById(R.id.cardViewItem);
         }
 
     }
 
 
 
-    public ExampleAdapter(Context mContext, ArrayList<ExampleItem> exampleList){
-        this.mExampleList = exampleList;
+    public HorizontalAdapter(Context mContext, ArrayList<String> characterList){
+        this.mCharacterList = characterList;
         this.mContext = mContext;
 
     }
@@ -48,26 +48,26 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_test,parent,false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         return evh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
-        final ExampleItem exampleItem = mExampleList.get(position);
+        final String character = mCharacterList.get(position);
         //Was previously ExampleItem currentItem = mExampleList.get(position);
 
         /*//Just added from tutorial
         fetchData process = new fetchData();
         process.execute();*/
 
-        holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
-        holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
+        holder.mTextView1.setText(character);//Was previously currentItem
+        //holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
 
         //RequestParams params = new RequestParams();
         //params.put(test);
-        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+        /*holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch(holder.getAdapterPosition()){
@@ -106,13 +106,13 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
 
             }
-        });
+        });*/
 
     }
-     //Havle to define howmany items are going to be in the ist
+    //Havle to define howmany items are going to be in the ist
     @Override
     public int getItemCount() {
-        return mExampleList.size();
+        return mCharacterList.size();
     }
 
 

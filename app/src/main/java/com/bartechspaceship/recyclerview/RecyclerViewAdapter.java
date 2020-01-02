@@ -39,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         // HERE I AM REFERENCING FRAGMENT LAYOUT, inflates each individual layout
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.character_item_example,parent,false);
         return new ViewHolder(view);
     }
 
@@ -78,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             //now it refers to xml image from fragment_layout
             //image = itemView.findViewById(R.id.image);
-            nameJSON = itemView.findViewById(R.id.nameJSON);
+            nameJSON = itemView.findViewById(R.id.characterName);
         }
     }
 
