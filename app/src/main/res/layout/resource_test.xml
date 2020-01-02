@@ -18,20 +18,18 @@
 
 
             <TextView
+                android:id="@+id/characterName"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="Vader"
-                android:id="@+id/characterName"
                 android:layout_centerHorizontal="true"
-                android:gravity="center"
                 android:layout_marginTop="5dp"
-                android:textColor="#FFE81F"
-                android:fontFamily="@font/sf_distant_galaxy"
-                android:layout_marginBottom="5dp"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="8sp"
                 android:autoSizeMaxTextSize="20sp"
-                />
+                android:autoSizeMinTextSize="8sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/sf_distant_galaxy"
+                android:gravity="center"
+                android:text="Vader"
+                android:textColor="#FFE81F" />
 
         </RelativeLayout>
 

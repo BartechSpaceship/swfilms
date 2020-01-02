@@ -3,6 +3,7 @@ package com.bartechspaceship.recyclerview;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class StarWarsDataModel {
@@ -14,6 +15,7 @@ public class StarWarsDataModel {
     private String mRelease_date;
     private int mEpisode_id;
     private ArrayList<Character> mCharacters;
+    private ArrayList<CharacterURL> mCharacterURLS;
 
     public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date, int episode_id, ArrayList<Character> characters) {
         mTitle = title;
@@ -23,6 +25,32 @@ public class StarWarsDataModel {
         mRelease_date = release_date;
         mEpisode_id = episode_id;
         mCharacters = characters;
+    }
+
+    public StarWarsDataModel(String title, String opening_crawl, String director, String producer, String release_date, int episode_id) {
+        mTitle = title;
+        mOpening_crawl = opening_crawl;
+        mDirector = director;
+        mProducer = producer;
+        mRelease_date = release_date;
+        mEpisode_id = episode_id;
+    }
+
+    public ArrayList<CharacterURL> getCharacterURLS() {
+        return mCharacterURLS;
+    }
+
+    public ArrayList<String> getCharacterURLStoString() {
+        ArrayList<String> URLs = new ArrayList<>();
+        for(CharacterURL characterURL: mCharacterURLS){
+            URLs.add(characterURL.getURL());
+        }
+
+        return URLs;
+    }
+
+    public void setCharacterURLS(ArrayList<CharacterURL> characterURLS) {
+        mCharacterURLS = characterURLS;
     }
 
     public String getTitle() {
@@ -47,6 +75,10 @@ public class StarWarsDataModel {
 
     public int getEpisode_id() {
         return mEpisode_id;
+    }
+
+    public void addCharacter(Character character){
+        mCharacters.add(character);
     }
 
     public ArrayList<Character> getCharacters() {

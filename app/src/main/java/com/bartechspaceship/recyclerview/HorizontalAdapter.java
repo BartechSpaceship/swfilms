@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.ExampleViewHolder> {
 
     String FILM_URL = "https://swapi.co/api/films/";
-    private ArrayList<String> mCharacterList;
+    private ArrayList<Character> mCharacterList;
     //private String mTitle;
     //ToDo Change <String> to <Character>
 
@@ -39,7 +39,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ex
 
 
 
-    public HorizontalAdapter(Context mContext, ArrayList<String> characterList){
+    public HorizontalAdapter(Context mContext, ArrayList<Character> characterList){
         this.mCharacterList = characterList;
         this.mContext = mContext;
 
@@ -55,14 +55,14 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ex
 
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
-        final String character = mCharacterList.get(position);
+        final Character character = mCharacterList.get(position);
         //Was previously ExampleItem currentItem = mExampleList.get(position);
 
         /*//Just added from tutorial
         fetchData process = new fetchData();
         process.execute();*/
 
-        holder.mTextView1.setText(character);//Was previously currentItem
+        holder.mTextView1.setText(character.getName());//Was previously currentItem
         //holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
 
         //RequestParams params = new RequestParams();
