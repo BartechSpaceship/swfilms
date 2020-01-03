@@ -1,4 +1,4 @@
-package com.bartechspaceship.recyclerview;
+package com.bartechspaceship.eShowStarWarsDemo;
 
 
 import android.content.Context;

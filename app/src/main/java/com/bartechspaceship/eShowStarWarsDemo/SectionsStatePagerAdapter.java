@@ -1,4 +1,4 @@
-package com.bartechspaceship.recyclerview;
+package com.bartechspaceship.eShowStarWarsDemo;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

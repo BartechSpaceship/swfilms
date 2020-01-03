@@ -1,6 +1,4 @@
-package com.bartechspaceship.recyclerview;
-
-import java.util.ArrayList;
+package com.bartechspaceship.eShowStarWarsDemo;
 
 public class CharacterURL {
 

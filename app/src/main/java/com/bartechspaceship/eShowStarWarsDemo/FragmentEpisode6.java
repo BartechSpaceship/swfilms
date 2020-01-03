@@ -1,4 +1,4 @@
-package com.bartechspaceship.recyclerview;
+package com.bartechspaceship.eShowStarWarsDemo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FragmentEpisode5 extends Fragment {
+public class FragmentEpisode6 extends Fragment {
 
 
     private TextView mTitle;
@@ -41,7 +41,7 @@ public class FragmentEpisode5 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_episode5, container, false);
+        View view = inflater.inflate(R.layout.fragment_episode6, container, false);
 
 
 
@@ -57,7 +57,7 @@ public class FragmentEpisode5 extends Fragment {
 
         mQueue = Volley.newRequestQueue(getActivity());
         mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
-        episodeNum = 5;
+        episodeNum = 6;
 
 
         jsonParse();
