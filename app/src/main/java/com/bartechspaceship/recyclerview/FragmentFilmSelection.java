@@ -34,10 +34,12 @@ public class FragmentFilmSelection extends Fragment {
         //First fragment is just main page
         exampleList.add(new ExampleItem("A New Hope", "1977-05-25"));//Movie4
         exampleList.add(new ExampleItem("The Empire Strkies Back", "1980-05-17"));//Movie5
-        exampleList.add(new ExampleItem("Title Of Film 3", "Release Date3"));//Movie6
-        exampleList.add(new ExampleItem("Title Of Film 4", "Release Date4"));//Movie1
-        exampleList.add(new ExampleItem("Title Of Film 5", "Release Date5"));//Movie2
-        exampleList.add(new ExampleItem("Title Of Film 6", "Release Date6"));//Movie3
+        exampleList.add(new ExampleItem("Return of the Jedi", "1983-05-25"));//Movie6
+        exampleList.add(new ExampleItem("The Phantom Menace", "1999-05-19"));//Movie1
+        exampleList.add(new ExampleItem("Attack of the Clones", "2002-05-16"));//Movie2
+        exampleList.add(new ExampleItem("Revenge of the Sith", "2005-05-19"));//Movie3
+        exampleList.add(new ExampleItem("The Force Awakens", "2015-12-11"));//Movie3
+
 
 
 

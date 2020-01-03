@@ -47,17 +47,14 @@ public class FragmentEpisode4 extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<CharacterURL> characterURLs;
     private StarWarsDataModel mStarWarsDataModel;
+    public RecyclerViewAdapter mAdapter;
+    private View rootView;
+    private ArrayList<String> mTestArray;
 
 
     //Character Names
     private Character mCharacter;
     private ArrayList<Character> mCharacters;
-
-    //public Context mContext;
-
-    //private ArrayList mCharacters; Comment out for now
-
-    //Names for testing
 
 
     @Nullable
@@ -65,68 +62,39 @@ public class FragmentEpisode4 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_episode4, container, false);
 
-
-        //mTitle = view.findViewById(R.id.title);
-
-        //Character URLs
-
-
-        View rootView = inflater.inflate(R.layout.resource_test, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView2);
         final FragmentActivity c = getActivity();
 
+        //mTestArray = new ArrayList<>();
+        //rootView = inflater.inflate(R.layout.resource_test, container, false);
 
-        //recyclerView = view.findViewById(R.id.recyclerView2);
         mTitle = view.findViewById(R.id.title);
         mOpeningCrawl = view.findViewById(R.id.opening_crawl);
         mDirectorTitle = view.findViewById(R.id.director);
         mProducer = view.findViewById(R.id.producer);
         mReleaseDate = view.findViewById(R.id.release_date);
-
-
-        //for testing purposes
-
-
-        //Holds characters in each movie.
         mCharacters = new ArrayList<>();
+
+
+
+        mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
+        episodeNum = 4;
+
 
 
 
         mQueue = Volley.newRequestQueue(getActivity());
         mQueue2 = Volley.newRequestQueue(getActivity());
 
-        mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
-        episodeNum = 4;
-
-        //mCharacters.get()
-
-
-
-
-        //Might have to make a seperate thread
-
-        //NAMES FOR TESTING
-        /*
-        mNames = new ArrayList<>();
-
-        mNames.add("Darth");
-
-        mNames.add("Luke");
-
-        mNames.add("bob");
-
-         */
-
-        //hardcoded initRecyclerView
 
         jsonParse();
-
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView = view.findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(layoutManager);
-        HorizontalAdapter adapter = new HorizontalAdapter(c, mCharacters);
-        recyclerView.setAdapter(adapter);
+        mAdapter = new RecyclerViewAdapter(getActivity(), mCharacters);
+        recyclerView.setAdapter(mAdapter);
+
+
 
         return view;
 
@@ -145,7 +113,7 @@ public class FragmentEpisode4 extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("results");
-                            //Comment what result is
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject result = jsonArray.getJSONObject(i);
 
@@ -157,36 +125,44 @@ public class FragmentEpisode4 extends Fragment {
                                 String producer = result.getString("producer");
                                 String release_date = result.getString("release_date");
                                 int episode_id = result.getInt("episode_id");
-                                //Characters
+
                                 JSONArray characters = result.getJSONArray("characters");
-                                for (int j = 0; j < characters.length(); j++) {
-                                    //JSONObject result2 = characters.getJSONObject(j); //- DOES NOT NEED TO BE CONVERTED TO JSONObject, already a string.
+                                /*for (int j = 0; j < characters.length(); j++) {
+
                                     CharacterURL characterURL = new CharacterURL(characters.getString(j));
                                     characterURLs.add(characterURL);
-                                    //characterURLs.add(characters.getString(j));
+
                                     Log.d(TAG, "onResponse5:" + characterURLs);
-                                    //JSONObject name = characters.getJSONObject(j);
-                                    //Character character = new Character(name);
-                                    //mCharacters.add(character);
-                                }
 
 
 
-                                mStarWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id, mCharacters);
-                                mStarWarsDataModel.setCharacterURLS(characterURLs);
-                                getCharactersFromJson(mStarWarsDataModel);
+
+                                }*/
+
+                                mStarWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id);
+                                //mStarWarsDataModel.setCharacterURLS(characterURLs);
+                                //getCharactersFromJson(mStarWarsDataModel);
+
 
 
                                 mStarWarsDataModels.add(mStarWarsDataModel);
 
-
-                                //int age = result.getInt("age");
-                                //String mail = result.getString("mail");
-
-                                //mTitle.setText(title);//Was previously append
                                 setTextViews(mStarWarsDataModels);
 
+                                mAdapter.notifyDataSetChanged();
+
+                                Log.d(TAG, "onResponseCHECKARRAY: " + mCharacters.size());
+
+
                             }
+
+
+
+
+
+
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             //Toast toast = new Toast(getActivity());
@@ -201,11 +177,10 @@ public class FragmentEpisode4 extends Fragment {
             }
         });
 
+
         mQueue.add(request);
 
-
     }
-
 
     public void setTextViews(ArrayList<StarWarsDataModel> starWarsDataModels) {
         for (StarWarsDataModel starWarsDataModel : starWarsDataModels) {
@@ -215,19 +190,20 @@ public class FragmentEpisode4 extends Fragment {
                 mDirectorTitle.setText(starWarsDataModel.getDirector());
                 mProducer.setText(starWarsDataModel.getProducer());
                 mReleaseDate.setText(starWarsDataModel.getRelease_date());
-                mCharacters = starWarsDataModel.getCharacters();
+
 
             }
 
         }
+
     }
 
 
     public void getCharactersFromJson(StarWarsDataModel starWarsDataModel) {
 
 
-        //String url = "https://swapi.co/api/people";
-        //String url = starWarsDataModel.getCharacterURLS();
+
+
 
         for (String url : starWarsDataModel.getCharacterURLStoString()) {
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -236,13 +212,14 @@ public class FragmentEpisode4 extends Fragment {
                         public void onResponse(JSONObject response) {
                             try {
 
-
                                 String name = response.get("name").toString();
-                                //JSONArray jsonArray = response.getJSONArray("name");
 
+                                mCharacters.add(new Character(name));
+
+                                Log.d(TAG, "onResponsetestarray: " + mCharacters.size());
                                 Log.d(TAG, "onResponseTest: " + name);
 
-                                mStarWarsDataModel.addCharacter(new Character(name));
+
 
                             } catch (JSONException ex) {
                                 ex.printStackTrace();
@@ -258,7 +235,6 @@ public class FragmentEpisode4 extends Fragment {
             mQueue2.add(request);
 
         }
-
         }
 
 

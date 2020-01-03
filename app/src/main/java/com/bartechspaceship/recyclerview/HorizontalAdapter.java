@@ -56,6 +56,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ex
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
         final Character character = mCharacterList.get(position);
+
+
         //Was previously ExampleItem currentItem = mExampleList.get(position);
 
         /*//Just added from tutorial
@@ -63,50 +65,9 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ex
         process.execute();*/
 
         holder.mTextView1.setText(character.getName());//Was previously currentItem
-        //holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
-
-        //RequestParams params = new RequestParams();
-        //params.put(test);
-        /*holder.mCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch(holder.getAdapterPosition()){
-                    case 0:
-                        ((MainActivity)mContext).setViewPager(1);
-                        //FragmentEpisode4 fragmentEpisode4 = new FragmentEpisode4();
-                        //fragmentEpisode4.mQueue= Volley.newRequestQueue(mContext.getApplicationContext());
-                        //fragmentEpisode4.jsonParse();
-
-                        //fragmentEpisode4.mTitle.append();
 
 
-                        break;
-                    case 1:
-                        ((MainActivity)mContext).setViewPager(2);
-                        break;
-                    case 2:
-                        ((MainActivity)mContext).setViewPager(3);
-                        break;
-                    case 3:
-                        ((MainActivity)mContext).setViewPager(4);
-                        break;
-                    case 4:
-                        ((MainActivity)mContext).setViewPager(5);
-                        break;
-                    case 5:
-                        ((MainActivity)mContext).setViewPager(6);
-                        break;
-                    case 6:
-                        ((MainActivity)mContext).setViewPager(7);
-                        break;
-                    default:
-                        ((MainActivity)mContext).setViewPager(0);
-                        break;
-                }
 
-
-            }
-        });*/
 
     }
     //Havle to define howmany items are going to be in the ist
@@ -116,6 +77,11 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ex
     }
 
 
+    public void updateCharacters(ArrayList<Character> characters) {
+        mCharacterList.clear();
+        mCharacterList.addAll(characters);
+        notifyDataSetChanged();
+    }
 
 
 

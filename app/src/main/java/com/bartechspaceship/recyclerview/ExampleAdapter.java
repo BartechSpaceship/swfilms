@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
 
     private Context mContext;
-    //private ArrayList<ExampleItem> mExampleItems;
+
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView1;
@@ -34,15 +35,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             mTextView2 = itemView.findViewById(R.id.textView2);
             mCardView = itemView.findViewById(R.id.cardViewItem);
         }
-
     }
-
-
 
     public ExampleAdapter(Context mContext, ArrayList<ExampleItem> exampleList){
         this.mExampleList = exampleList;
         this.mContext = mContext;
-
     }
 
     @NonNull
@@ -56,11 +53,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
         final ExampleItem exampleItem = mExampleList.get(position);
-        //Was previously ExampleItem currentItem = mExampleList.get(position);
 
-        /*//Just added from tutorial
-        fetchData process = new fetchData();
-        process.execute();*/
 
         holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
         holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem

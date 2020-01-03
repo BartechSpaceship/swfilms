@@ -133,16 +133,16 @@
 
     </TextView>
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/characters">
+        android:orientation="horizontal"
+        android:layout_below="@id/characters"/>
 
-        <include
-            layout="@layout/character_item_example"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
+
+
+
 
 
 

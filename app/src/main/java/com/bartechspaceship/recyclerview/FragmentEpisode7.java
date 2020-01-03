@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FragmentEpisode3 extends Fragment {
+public class FragmentEpisode7 extends Fragment {
 
 
     private TextView mTitle;
@@ -41,7 +41,7 @@ public class FragmentEpisode3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_episode3, container, false);
+        View view = inflater.inflate(R.layout.fragment_episode7, container, false);
 
 
 
@@ -57,7 +57,7 @@ public class FragmentEpisode3 extends Fragment {
 
         mQueue = Volley.newRequestQueue(getActivity());
         mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
-        episodeNum = 3;
+        episodeNum = 7;
 
 
         jsonParse();
