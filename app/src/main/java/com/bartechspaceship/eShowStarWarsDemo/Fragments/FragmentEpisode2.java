@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +18,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bartechspaceship.eShowStarWarsDemo.Adapters.RecyclerViewAdapter;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.Character;
+import com.bartechspaceship.eShowStarWarsDemo.R;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.StarWarsDataModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FragmentEpisode6 extends Fragment {
+public class FragmentEpisode2 extends Fragment {
 
 
     private TextView mTitle;
@@ -34,6 +40,8 @@ public class FragmentEpisode6 extends Fragment {
     public RequestQueue mQueue;
     private ArrayList<StarWarsDataModel> mStarWarsDataModels;
     private int episodeNum;
+    public RecyclerViewAdapter mAdapter;
+    private RecyclerView recyclerView;
 
     private Character mCharacter;
     private ArrayList<Character> mCharacters;
@@ -41,12 +49,9 @@ public class FragmentEpisode6 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_episode6, container, false);
+        View view = inflater.inflate(R.layout.fragment_episode2, container, false);
 
-
-
-
-
+        //Initializing views.
         mTitle = view.findViewById(R.id.title);
         mOpeningCrawl = view.findViewById(R.id.opening_crawl);
         mDirectorTitle = view.findViewById(R.id.director);
@@ -57,20 +62,30 @@ public class FragmentEpisode6 extends Fragment {
 
         mQueue = Volley.newRequestQueue(getActivity());
         mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
-        episodeNum = 6;
+
+        //The ID to match to the episode
+        episodeNum = 2;
 
 
         jsonParse();
 
-        //mTitle.setText("Episode 5");
+        mCharacters.add(new Character("Obi-Wan Kenobi"));
+        mCharacters.add(new Character("Yoda"));
+        mCharacters.add(new Character("Anakin Skywalker"));
+        mCharacters.add(new Character("Palpatine"));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new RecyclerViewAdapter(getActivity(), mCharacters);
+        recyclerView.setAdapter(mAdapter);
+
 
         return view;
     }
-
+    //Using Volley to make a REST call.
     public void jsonParse() {
 
-        //final TextView mTitle;
-        //mTitle = (TextView) v.findViewById(R.id.title);
         String url = "https://swapi.co/api/films";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -97,17 +112,12 @@ public class FragmentEpisode6 extends Fragment {
                                 mCharacter = new Character(characters.getString(0));
                                 mCharacters.add(mCharacter);
 
-                                //int age = result.getInt("age");
-                                //String mail = result.getString("mail");
-
-                                //mTitle.setText(title);//Was previously append
                                 setTextViews(mStarWarsDataModels);
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            //Toast toast = new Toast(getActivity());
-                            //toast.makeText(getActivity(), "Call Failed", Toast.LENGTH_SHORT).show();
+
 
                         }
                     }

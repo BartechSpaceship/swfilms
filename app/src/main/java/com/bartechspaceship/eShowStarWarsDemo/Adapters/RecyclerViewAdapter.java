@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Adapters;
 
 
 import android.content.Context;
@@ -11,10 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bartechspaceship.eShowStarWarsDemo.Objects.Character;
+import com.bartechspaceship.eShowStarWarsDemo.R;
+
 import java.util.ArrayList;
 
 
-
+//Second Recycler view, this one used for characters
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "Recycle View Adapter Testing In progress";
@@ -27,20 +30,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @NonNull
-    @Override
+    @Override//Connecting to XML
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_test,parent,false);
         return new ViewHolder(view);
     }
 
-    @Override// Here is where all the widgets get attached to each individual list item
+    @Override//View holder for the chracter names
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-        //final Character character = mCharacterList.get(position);
+
 
         holder.mTextView.setText(mCharacterList.get(position).getName());
 
-        //holder.nameJSON.setText(mNamesJSON.get(position));// Here the JSON name will be placed the code might be removed
+
 
     }
 
@@ -50,13 +53,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        //CircleImageView image;
+
         TextView mTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //now it refers to xml image from fragment_layout
-            //image = itemView.findViewById(R.id.image);
+
             mTextView = itemView.findViewById(R.id.characterName);
         }
     }

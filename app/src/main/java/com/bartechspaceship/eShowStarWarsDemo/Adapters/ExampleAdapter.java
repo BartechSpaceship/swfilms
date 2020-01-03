@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,22 +10,28 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bartechspaceship.eShowStarWarsDemo.Objects.ExampleItem;
+import com.bartechspaceship.eShowStarWarsDemo.Activities.MainActivity;
+import com.bartechspaceship.eShowStarWarsDemo.R;
+
 import java.util.ArrayList;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
 
+    //API link
     String FILM_URL = "https://swapi.co/api/films/";
     private ArrayList<ExampleItem> mExampleList;
     //private String mTitle;
 
-
     private Context mContext;
 
 
+    //Adapter for Navigation fragment
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextView1;
         public TextView mTextView2;
         CardView mCardView;
+
 
         public ExampleViewHolder(View itemView){
             super(itemView);
@@ -41,6 +47,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         this.mContext = mContext;
     }
 
+    //Connecting to XML code
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,11 +56,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         return evh;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
         final ExampleItem exampleItem = mExampleList.get(position);
 
-
+        //Updating the Text from example item
         holder.mTextView1.setText(exampleItem.getText1());//Was previously currentItem
         holder.mTextView2.setText(exampleItem.getText2());//Was previously currentItem
 
@@ -62,6 +70,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //A switch for Navigation fragment to choose film
                 switch(holder.getAdapterPosition()){
                     case 0:
                         ((MainActivity)mContext).setViewPager(1);

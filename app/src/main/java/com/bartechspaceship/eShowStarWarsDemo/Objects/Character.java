@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Objects;
 
 public class Character {
 

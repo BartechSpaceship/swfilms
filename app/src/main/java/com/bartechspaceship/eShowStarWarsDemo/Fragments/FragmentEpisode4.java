@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.Character;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.CharacterURL;
+import com.bartechspaceship.eShowStarWarsDemo.R;
+import com.bartechspaceship.eShowStarWarsDemo.Adapters.RecyclerViewAdapter;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.StarWarsDataModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,15 +44,13 @@ public class FragmentEpisode4 extends Fragment {
     public RequestQueue mQueue2;
     private ArrayList<StarWarsDataModel> mStarWarsDataModels;
     private int episodeNum;
+    public RecyclerViewAdapter mAdapter;
     private RecyclerView recyclerView;
     private ArrayList<CharacterURL> characterURLs;
     private StarWarsDataModel mStarWarsDataModel;
-    public RecyclerViewAdapter mAdapter;
     private View rootView;
     private ArrayList<String> mTestArray;
 
-
-    //Character Names
     private Character mCharacter;
     private ArrayList<Character> mCharacters;
 
@@ -59,9 +62,7 @@ public class FragmentEpisode4 extends Fragment {
 
         final FragmentActivity c = getActivity();
 
-        //mTestArray = new ArrayList<>();
-        //rootView = inflater.inflate(R.layout.resource_test, container, false);
-
+        //Initializing views.
         mTitle = view.findViewById(R.id.title);
         mOpeningCrawl = view.findViewById(R.id.opening_crawl);
         mDirectorTitle = view.findViewById(R.id.director);
@@ -69,19 +70,21 @@ public class FragmentEpisode4 extends Fragment {
         mReleaseDate = view.findViewById(R.id.release_date);
         mCharacters = new ArrayList<>();
 
+        mStarWarsDataModels = new ArrayList<>();
 
-
-        mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
+        //The ID to match to the episode
         episodeNum = 4;
-
-
-
 
         mQueue = Volley.newRequestQueue(getActivity());
         mQueue2 = Volley.newRequestQueue(getActivity());
 
-
         jsonParse();
+
+        mCharacters.add(new Character("Luke Skywalker"));
+        mCharacters.add(new Character("Darth Vader"));
+        mCharacters.add(new Character("C-3PO"));
+
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView = view.findViewById(R.id.recyclerView2);
@@ -89,17 +92,14 @@ public class FragmentEpisode4 extends Fragment {
         mAdapter = new RecyclerViewAdapter(getActivity(), mCharacters);
         recyclerView.setAdapter(mAdapter);
 
-
-
         return view;
 
     }
 
-
+    //Using Volley to make a REST call.
     public void jsonParse() {
 
-        //final TextView mTitle;
-        //mTitle = (TextView) v.findViewById(R.id.title);
+
         String url = "https://swapi.co/api/films";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -126,42 +126,22 @@ public class FragmentEpisode4 extends Fragment {
 
                                     CharacterURL characterURL = new CharacterURL(characters.getString(j));
                                     characterURLs.add(characterURL);
-
                                     Log.d(TAG, "onResponse5:" + characterURLs);
 
-
-
-
                                 }*/
-
                                 mStarWarsDataModel = new StarWarsDataModel(title, openingCrawl, director, producer, release_date, episode_id);
                                 //mStarWarsDataModel.setCharacterURLS(characterURLs);
                                 //getCharactersFromJson(mStarWarsDataModel);
-
-
-
                                 mStarWarsDataModels.add(mStarWarsDataModel);
-
                                 setTextViews(mStarWarsDataModels);
-
                                 mAdapter.notifyDataSetChanged();
-
                                 Log.d(TAG, "onResponseCHECKARRAY: " + mCharacters.size());
-
 
                             }
 
-
-
-
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            //Toast toast = new Toast(getActivity());
-                            //toast.makeText(getActivity(), "Call Failed", Toast.LENGTH_SHORT).show();
+
 
                         }
                     }
@@ -172,9 +152,7 @@ public class FragmentEpisode4 extends Fragment {
             }
         });
 
-
         mQueue.add(request);
-
     }
 
     public void setTextViews(ArrayList<StarWarsDataModel> starWarsDataModels) {
@@ -188,18 +166,10 @@ public class FragmentEpisode4 extends Fragment {
 
 
             }
-
         }
-
     }
 
-
     public void getCharactersFromJson(StarWarsDataModel starWarsDataModel) {
-
-
-
-
-
         for (String url : starWarsDataModel.getCharacterURLStoString()) {
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     new Response.Listener<JSONObject>() {
@@ -213,8 +183,6 @@ public class FragmentEpisode4 extends Fragment {
 
                                 Log.d(TAG, "onResponsetestarray: " + mCharacters.size());
                                 Log.d(TAG, "onResponseTest: " + name);
-
-
 
                             } catch (JSONException ex) {
                                 ex.printStackTrace();
@@ -231,9 +199,6 @@ public class FragmentEpisode4 extends Fragment {
 
         }
         }
-
-
-
         }
 
 

@@ -1,4 +1,4 @@
-package com.bartechspaceship.eShowStarWarsDemo;
+package com.bartechspaceship.eShowStarWarsDemo.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +18,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bartechspaceship.eShowStarWarsDemo.Adapters.RecyclerViewAdapter;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.Character;
+import com.bartechspaceship.eShowStarWarsDemo.R;
+import com.bartechspaceship.eShowStarWarsDemo.Objects.StarWarsDataModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +40,9 @@ public class FragmentEpisode5 extends Fragment {
     public RequestQueue mQueue;
     private ArrayList<StarWarsDataModel> mStarWarsDataModels;
     private int episodeNum;
+    public RecyclerViewAdapter mAdapter;
+    private RecyclerView recyclerView;
+
 
     private Character mCharacter;
     private ArrayList<Character> mCharacters;
@@ -43,10 +52,7 @@ public class FragmentEpisode5 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_episode5, container, false);
 
-
-
-
-
+        //Initializing views.
         mTitle = view.findViewById(R.id.title);
         mOpeningCrawl = view.findViewById(R.id.opening_crawl);
         mDirectorTitle = view.findViewById(R.id.director);
@@ -57,16 +63,27 @@ public class FragmentEpisode5 extends Fragment {
 
         mQueue = Volley.newRequestQueue(getActivity());
         mStarWarsDataModels = new ArrayList<>();//Change mStarWarsDataModel to something like mStarWarsArray
+
+        //The ID to match to the episode
         episodeNum = 5;
 
 
         jsonParse();
+        mCharacters.add(new Character("Yoda"));
+        mCharacters.add(new Character("Wedge Antilles"));
+        mCharacters.add(new Character("Chewbacca"));
+        mCharacters.add(new Character("Hansolo"));
 
-        //mTitle.setText("Episode 5");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new RecyclerViewAdapter(getActivity(), mCharacters);
+        recyclerView.setAdapter(mAdapter);
+
 
         return view;
     }
-
+    //Using Volley to make a REST call.
     public void jsonParse() {
 
         //final TextView mTitle;
